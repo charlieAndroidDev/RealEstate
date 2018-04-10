@@ -50,8 +50,29 @@
 
                 mun.onreadystatechange = function() {//Call a function when the state changes.
                     if(mun.readyState == 4 && mun.status == 200) {
-                        document.body.innerHTML = '';
-                        document.body.innerHTML = '<font color=\"green\">All relevant information has been sent to INS</font>';
+
+                        var mbr = new XMLHttpRequest();
+                        var mbrServiceUrl = "https://prod-14.canadaeast.logic.azure.com:443/workflows/4044ec422d6443a1ae2b5f9d4a93a386/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=q9MmCBFvUijdNXYrPSXdmGTUeAC0Y2hWJWZ9WK2B3bU";
+
+
+                        var insuredValue = 5000000;
+                        var deductibleValue = 10000;
+
+                        var paramsMbr = "mortId=" + mortId + "&insuranceVal=" + insuredValue + "&deductibleVal=" + deductibleValue + "&name=" + name;
+
+                        mbr.open("POST", mbrServiceUrl, true);
+    
+                        //Send the proper header information along with the request
+                        mbr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                        mbr.onreadystatechange = function() {//Call a function when the state changes.
+                            if(mbr.readyState == 4 && mbr.status == 200) {
+                                document.body.innerHTML = '';
+                                document.body.innerHTML = '<font color=\"green\">All relevant information has been sent to MBR</font>';
+                            }
+                        }
+
+                        mbr.send(paramsMbr);
                     }
                 }
 
