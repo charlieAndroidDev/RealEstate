@@ -11,14 +11,23 @@
     <input type="text" name="houseId"><br>
     Mortgage ID:<br>
     <input type="text" name="mortId"><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onsubmit="return submitForm();">
 </form> 
 
 <script type="text/javascript">
 
+/*
     var myForm = document.getElementById("appraisalForm");
     myForm.addEventListener('submit', function(e)
     {
+        
+
+        e.preventDefault();
+    
+    });*/
+
+    var submitForm = function() {
+
         var http = new XMLHttpRequest();
         var url = "https://prod-19.canadaeast.logic.azure.com:443/workflows/392fc7df859048ddad66130807936528/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Gh9BzsmJm6cr_Yr9hIOMcO_ulW-hKZqd0Vko-zRrCrk";
         
@@ -45,9 +54,7 @@
 
         http.send(params);
 
-        e.preventDefault();
-    
-    });
+    };
 
 </script>
 
