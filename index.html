@@ -16,24 +16,16 @@
 
 <script type="text/javascript">
 
-/*
     var myForm = document.getElementById("appraisalForm");
     myForm.addEventListener('submit', function(e)
     {
         
-
-        e.preventDefault();
-    
-    });*/
-
-    var submitForm = function() {
-
         var http = new XMLHttpRequest();
         var url = "https://prod-19.canadaeast.logic.azure.com:443/workflows/392fc7df859048ddad66130807936528/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Gh9BzsmJm6cr_Yr9hIOMcO_ulW-hKZqd0Vko-zRrCrk";
         
-        var name = document.getElementById("loginForm").elements[0].value;
-        var houseId = document.getElementById("loginForm").elements[1].value;
-        var mortId = document.getElementById("loginForm").elements[2].value;
+        var name = document.getElementById("appraisalForm").elements[0].value;
+        var houseId = document.getElementById("appraisalForm").elements[1].value;
+        var mortId = document.getElementById("appraisalForm").elements[2].value;
 
         var appraisedVal = Math.random() * (500000 - 300000) + 300000;
 
@@ -54,7 +46,9 @@
 
         http.send(params);
 
-    };
+        e.preventDefault();
+    
+    });
 
 </script>
 
